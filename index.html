@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+
+    <title>App</title>
+    <link href="material.css" rel="stylesheet" type="text/css">
+    <link href="quasar.mat.rtl.min.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="q-app">
+      <q-layout view="lHh Lpr fff">
+        <q-layout-header>
+          <q-toolbar :glossy="$q.theme === 'mat'" :inverted="$q.theme === 'ios'">
+            <q-btn flat round dense @click="drawerState = !drawerState" icon="menu"></q-btn>
+            <q-toolbar-title>
+              Application
+              <div slot="subtitle">application</div>
+            </q-toolbar-title>
+          </q-toolbar>
+        </q-layout-header>
+
+        <q-layout-drawer v-model="drawerState" :content-class="$q.theme === 'mat' ? 'bg-white' : null" >
+          <q-list no-border link inset-delimiter>
+            <q-list-header>Side</q-list-header>
+            <q-item @click.native="launch('http://google.com')">
+              <q-item-side icon="school"></q-item-side>
+              <q-item-main label="Google" sublabel="google"></q-item-main>
+            </q-item>
+          </q-list>
+        </q-layout-drawer>
+
+        <q-page-container>
+          <my-page></my-page>
+        </q-page-container>
+      </q-layout>
+    </div>
+
+    <script type="text/x-template" id="my-page">
+      <q-page padding>
+        <!-- page content; replace this entirely -->
+        <div class="row flex-center absolute-full">
+          main content
+        </div>
+      </q-page>
+    </script>
+
+    <script src="quasar.ie.polyfills.umd.min.js"></script>
+    <script src="vue.min.js"></script>
+    <script src="quasar.mat.umd.min.js"></script>
+    <script>
+		Vue.component('my-page', {
+			template: '#my-page'
+		})
+		
+		new Vue({
+			el: '#q-app',
+			data: function () {
+			  return {
+				drawerState: false
+				}
+			},
+			methods: {
+			  launch: function (url) {
+				Quasar.utils.openURL(url)
+			  }
+			}
+		})
+		
+		Quasar.i18n.set({rtl: true})
+    </script>
+  </body>
+</html>
