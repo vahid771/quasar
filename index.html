@@ -13,40 +13,82 @@
   </head>
   <body>
     <div id="q-app">
-      <q-layout view="lHh Lpr fff">
-        <q-layout-header>
-          <q-toolbar :glossy="$q.theme === 'mat'" :inverted="$q.theme === 'ios'">
-            <q-btn flat round dense @click="drawerState = !drawerState" icon="menu"></q-btn>
+	<q-layout>
+	  <q-layout-header>
+		<q-toolbar>
             <q-toolbar-title>
-              Application
-              <div slot="subtitle">application</div>
+              عنوان صفحه
+              <div slot="subtitle">زیرعنوان</div>
             </q-toolbar-title>
-          </q-toolbar>
-        </q-layout-header>
+	    </q-toolbar>
+	  </q-layout-header>
+	  
+	  <q-page-container>
+		<my-page></my-page>
+	  </q-page-container>
 
-        <q-layout-drawer v-model="drawerState" :content-class="$q.theme === 'mat' ? 'bg-white' : null" >
-          <q-list no-border link inset-delimiter>
-            <q-list-header>Side</q-list-header>
-            <q-item @click.native="launch('http://google.com')">
-              <q-item-side icon="school"></q-item-side>
-              <q-item-main label="Google" sublabel="google"></q-item-main>
-            </q-item>
-          </q-list>
-        </q-layout-drawer>
-
-        <q-page-container>
-          <my-page></my-page>
-        </q-page-container>
-      </q-layout>
+	  <q-layout-footer>
+		<q-toolbar>
+            <q-toolbar-title>
+              پانویس صفحه
+              <div slot="subtitle">زیرنویس</div>
+            </q-toolbar-title>
+	    </q-toolbar>
+	  </q-layout-footer>
+	</q-layout>
     </div>
 
     <script type="text/x-template" id="my-page">
-      <q-page padding>
-        <!-- page content; replace this entirely -->
-        <div class="row flex-center absolute-full">
-          main content
-        </div>
-      </q-page>
+      <q-page>
+		<q-carousel color="amber" quick-nav infinite :autoplay=true>
+		  
+		  <q-carousel-slide class="flex flex-center">
+			<q-jumbotron class="absolute-full">
+			  <div class="q-display-3">سلام دنیا</div>
+			  <div class="q-subheading">
+				شعار صفحه یا جمله کلیدی
+			  </div>
+			  <hr class="q-hr q-my-lg">
+			  <div class="q-title q-mb-md">قالب صفحه کازار فارسی</div>
+			  <q-btn color="primary" class="q-py-sm q-px-xl" label="ورود" />
+			</q-jumbotron>
+		  </q-carousel-slide>
+		  
+		  <q-carousel-slide class="flex flex-center">
+			<q-timeline responsive color="secondary">
+			  <q-timeline-entry heading>
+				رویدادها
+			  </q-timeline-entry>
+
+			  <q-timeline-entry title="رویداد اول" subtitle="20 آبان 1397" side="left">
+				<div>
+				  ایجاد قالب پایه
+				</div>
+			  </q-timeline-entry>
+			  
+			  <q-timeline-entry title="رویداد دوم" subtitle="21 آبان 1397" side="left">
+				<div>
+				  بهبود قالب اولیه و اصلاحات اساسی
+				</div>
+			  </q-timeline-entry>
+			  
+			  <q-timeline-entry title="رویداد سوم" subtitle="22 آبان 1397" side="left">
+				<div>
+				  اصلاحات تکمیلی
+				</div>
+			  </q-timeline-entry>
+			  
+			</q-timeline>
+		  </q-carousel-slide>
+		  
+		  <q-carousel-slide class="flex flex-center">
+			<div class="text-center">
+			  <div class="q-display-3">اسلاید سوم</div>
+			  <div>متن اسلاید سوم</div>
+			</div>
+		  </q-carousel-slide>
+		</q-carousel>
+	  </q-page>
     </script>
 
     <script src="quasar.ie.polyfills.umd.min.js"></script>
@@ -61,7 +103,7 @@
 			el: '#q-app',
 			data: function () {
 			  return {
-				drawerState: false
+				drawerState: true
 				}
 			},
 			methods: {
